@@ -15,7 +15,7 @@
 - 原始工作流只读，修改仅发生在独立发布副本。
 - 不包含凭据、聊天记录、客户图片、成品图片、缓存或产品专属硬编码脚本。
 - 不调用付费 API，不批量生成图片。
-- GitHub 仓库必须为 Private，禁止强制推送。
+- GitHub 仓库必须为 Public，公开安装不得要求协作者权限或私有仓库认证；禁止强制推送。
 
 ## Review Focus
 
@@ -75,17 +75,16 @@
 - [ ] 运行 Skill Creator 元数据校验、内部引用检查、敏感扫描和干净安装模拟。
 - [ ] 生成并复核 SHA-256 清单；明确图片质量未实测。
 
-### Task 4: GitHub 私有发布
+### Task 4: GitHub 公开发布
 
 **Files:**
 - Create: Git repository metadata, tag `v1.0.0`, GitHub Release
 
 **Interfaces:**
 - Consumes: Task 3 通过的发布树和清单。
-- Produces: Private GitHub repository URL, Release URL, remote verification evidence.
+- Produces: Public GitHub repository URL, Release URL, remote verification evidence.
 
 - [ ] 检查认证、账号和同名仓库；若存在先检查内容。
 - [ ] 初始化 Git，提交验证通过的文件并推送，不强推。
 - [ ] 创建 `v1.0.0` 标签和 Release。
 - [ ] 回读仓库可见性、默认分支、提交、标签和 Release；在远程检出副本重跑验证。
-

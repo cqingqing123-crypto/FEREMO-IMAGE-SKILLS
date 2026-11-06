@@ -1,6 +1,6 @@
 # FEREMO IMAGE SKILLS
 
-FEREMO 服装图片工作流的 Codex 私有发布包。核心 Skill 是 `ecomi-aplus-remix`：使用版式参考图与产品/模特图生成 Amazon A+ 图片，并严格控制人物身份、真实体型、取景、服装颜色、印花、版型和结构。
+FEREMO 服装图片工作流的 Codex 公开发布包。核心 Skill 是 `ecomi-aplus-remix`：使用版式参考图与产品/模特图生成 Amazon A+ 图片，并严格控制人物身份、真实体型、取景、服装颜色、印花、版型和结构。
 
 ## 发布内容
 
@@ -18,7 +18,7 @@ skills/ecomi-aplus-remix/
 ## 依赖
 
 - Codex Desktop/CLI，且当前会话可用内置图片生成工具。
-- 有权访问本私有 GitHub 仓库的 GitHub 账号。
+- 无需仓库协作者权限、GitHub Token 或私有仓库认证；公开用户可直接下载安装。
 - 核心工作流不需要单独配置 OpenAI API Key，也不会自动回退到付费 API。
 
 ## 安装（推荐）
@@ -26,16 +26,17 @@ skills/ecomi-aplus-remix/
 在 Codex 中发送：
 
 ```text
-使用 $skill-installer，从私有仓库 cqingqing123-crypto/FEREMO-IMAGE-SKILLS 的 skills/ecomi-aplus-remix 安装 Skill。
+使用 $skill-installer，从公开仓库 cqingqing123-crypto/FEREMO-IMAGE-SKILLS 的 skills/ecomi-aplus-remix 安装 Skill。
 ```
 
-内置安装器会使用当前 GitHub 凭据，并安装到当前电脑的 `$CODEX_HOME/skills/ecomi-aplus-remix`；`CODEX_HOME` 未设置时使用 Codex 默认目录。
+内置安装器会从公开仓库直接下载，不要求 GitHub 登录或协作者权限。Skill 安装到当前电脑的 `$CODEX_HOME/skills/ecomi-aplus-remix`；`CODEX_HOME` 未设置时使用 Codex 默认目录 `~/.codex/skills/ecomi-aplus-remix`。
 
 ## 手动安装（PowerShell）
 
 ```powershell
 git clone https://github.com/cqingqing123-crypto/FEREMO-IMAGE-SKILLS.git
-$destination = Join-Path $env:CODEX_HOME 'skills\ecomi-aplus-remix'
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME '.codex' }
+$destination = Join-Path $codexHome 'skills\ecomi-aplus-remix'
 if (Test-Path -LiteralPath $destination) { throw "目标已存在，请先备份或使用更新流程：$destination" }
 Copy-Item -Recurse -LiteralPath '.\FEREMO-IMAGE-SKILLS\skills\ecomi-aplus-remix' -Destination $destination
 ```
@@ -78,4 +79,3 @@ powershell -ExecutionPolicy Bypass -File .\tests\validate-release.ps1
 图片质量、人物身份和服装细节属于视觉结果，无法由离线结构测试证明；每次交付仍需按质量门禁人工复核。
 
 参考：[OpenAI 官方 Skills 结构说明](https://developers.openai.com/plugins/build/skills)、[OpenAI Skills 测试方法](https://developers.openai.com/blog/eval-skills)。
-
