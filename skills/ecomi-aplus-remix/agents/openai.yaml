@@ -1,0 +1,8 @@
+interface:
+  display_name: "FEREMO A+ 图片再创作"
+  short_description: "FEREMO 服装 A+ 版式再创作与人物、体型及产品细节保真"
+  default_prompt: "使用 $ecomi-aplus-remix，根据版式参考图和产品模特图生成一张保真人物与服装细节的 Amazon A+ 图片。"
+
+policy:
+  allow_implicit_invocation: true
+

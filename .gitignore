@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.bak
+.env
+.env.*
+__pycache__/
+*.pyc
+test-artifacts/
+
